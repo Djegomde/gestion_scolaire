@@ -21,11 +21,12 @@ Le projet est conçu selon les principes modernes de JavaScript (ES6 Modules) et
 ### Structure des Modules
 
 L'application est découpée en 5 modules fonctionnels pour garantir la maintenabilité :
-1- Personnes.js : Gère les classes humaines (Personne, Eleve, Enseignant).
-2- Structure.js : Gère l'infrastructure (Etablissement, Classe).
-3- Pedagogie.js : Le cœur du système. Contient la classe pivot Cours qui lie un enseignant à une classe pour une matière donnée.
-4- Evaluation.js : Gère la logique de notation (Evaluation, Bulletin) et les calculs de moyennes.
-5- Main.js : Point d'entrée pour l'exécution des scénarios de test.
+
+- Personnes.js : Gère les classes humaines (Personne, Eleve, Enseignant).
+- Structure.js : Gère l'infrastructure (Etablissement, Classe).
+- Pedagogie.js : Le cœur du système. Contient la classe pivot Cours qui lie un enseignant à une classe pour une matière donnée.
+- Evaluation.js : Gère la logique de notation (Evaluation, Bulletin) et les calculs de moyennes.
+- Main.js : Point d'entrée pour l'exécution des scénarios de test.
 
 ### Modélisation UML (Aperçu)
 
@@ -49,5 +50,5 @@ Ce projet est le fruit d'un apprentissage approfondi de JavaScript. Il met en pr
 
 - Algorithmique : Logique de filtrage et de réduction pour les calculs de moyennes complexes.
 
-####📝 Auteur
+###📝 Auteur
 Développé par [Hippolyte DM] dans le cadre d'un parcours d'apprentissage intensif JS.
