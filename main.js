@@ -20,4 +20,4 @@ let enstes = {
     email : "hippolyte@gmail.com"
 }
 let ens=new Enseignant(enstes);
-console.log(ens)
+console.log(ens.fullName)

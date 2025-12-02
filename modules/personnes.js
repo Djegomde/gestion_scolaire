@@ -41,7 +41,7 @@ export class Eleve extends Personne {
     constructor({nom,prenom,sexe,date_naiss,lieu_naiss}){
         super({nom,prenom,sexe,date_naiss});
         this._lieuNaiss = lieu_naiss;
-       // this.classe = new Classe();
+      
     }
 
     get matricule () { return this.matricule = (this.sexe==="F")?"00"+this.sexe+this.fullName.slice(0,3):"00"+this.sexe+this.fullName.slice(0,3)};
