@@ -1,4 +1,6 @@
 import { Eleve,Enseignant } from "./modules/Personnes.js";
+import { Etablissement,Classe } from "./modules/Structure.js";
+
 
 let eleveTest = {
     nom : "Djegomde",
@@ -21,3 +23,24 @@ let enstes = {
 }
 let ens=new Enseignant(enstes);
 console.log(ens.fullName)
+
+console.log("test structure")
+
+let cl2 = new Classe({nom:"1L", anneScolaire: "2021"});
+let cl3 = new Classe({nom:"3e", anneScolaire: "2021"});
+let cl1 = new Classe({nom:"2nd",anneScolaire:"2023"});
+let cl4 = new Classe({nom:"4e",anneScolaire:"2023"});
+//console.log(cl1)
+
+let etab1 = new Etablissement("pandaré")
+etab1.addClass(cl2);
+etab1.addClass(cl1);
+etab1.addClass(cl1);
+etab1.addClass(cl3);
+//etab1.addClass(cl4);
+//etab1.deleteClasse(cl4);
+etab1.updateClasse(cl1,"Terminale","2026");
+console.log(etab1)
+
+//console.log(etab1.searchClass("2nd"));
+

@@ -41,6 +41,7 @@ export class Eleve extends Personne {
     constructor({nom,prenom,sexe,date_naiss,lieu_naiss}){
         super({nom,prenom,sexe,date_naiss});
         this._lieuNaiss = lieu_naiss;
+        this.listeEvaluation = [];
       
     }
 
@@ -61,6 +62,7 @@ export class Enseignant extends Personne {
          this._diplome=diplome;
          this._telephone=telephone;
          this._email = email;
+         this.listeCours = [];
     }
    
     get diplome () { return this._diplome };
