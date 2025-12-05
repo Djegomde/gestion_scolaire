@@ -41,7 +41,6 @@ export class Eleve extends Personne {
     constructor({nom,prenom,sexe,date_naiss,lieu_naiss}){
         super({nom,prenom,sexe,date_naiss});
         this._lieuNaiss = lieu_naiss;
-        this.listeEvaluation = [];
       
     }
 
@@ -53,6 +52,19 @@ export class Eleve extends Personne {
             this._lieuNaiss=lieu;
         }
     }
+
+
+    // Ajouter Evaluation
+        addEvaluation(value){
+            if (value instanceof Evaluation) {
+                let existEval = this.listEvaluation.some(evaluation=>evaluation._nomMatiere===value._nomMatiere);
+    
+                if (!existEval) {
+                    this.listEvaluation.push(value)
+                }
+                
+            }
+        }
     
 }
 
@@ -62,7 +74,6 @@ export class Enseignant extends Personne {
          this._diplome=diplome;
          this._telephone=telephone;
          this._email = email;
-         this.listeCours = [];
     }
    
     get diplome () { return this._diplome };

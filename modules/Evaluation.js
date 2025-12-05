@@ -1,20 +1,26 @@
+import { Cours } from "./Pedagogie";
+import { Eleve } from "./Personnes";
+
 export class Evaluation {
     constructor(valeur,type,date,appreciation) {
         this._valeur = valeur;
         this._type = type;
         this._dateEvaluation = date;
         this._appreciation = appreciation;
+        this.cours = Cours;
+        this.eleve = Eleve;
     }
 }
 
 export class Bulletin {
-    constructor(trimestre,moyenne,appreciationProf,appreciationConseil,sanction,distinction) {
+    constructor(eleve,trimestre,ensembleNotes) {
         this._trimestre = trimestre;
         this._moyenne = moyenne;
         this._appreciationProf = appreciationProf;
         this._appreciationConseil = appreciationConseil;
         this._sanction = sanction;
         this._distinction = distinction;
+
     }
 }
 

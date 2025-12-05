@@ -1,4 +1,3 @@
-import { Cours } from "./Pedagogie";
 import { Eleve } from "./Personnes";
 
 export class Etablissement {
@@ -65,7 +64,6 @@ export class Classe {
         this._nom = nom;
         this._anneScolaire = anneScolaire;
         this.listeEleve = [];
-        this.listeCours = [];
     }
 
     get nom () { return this._nom;}
@@ -126,51 +124,6 @@ export class Classe {
 
     nbTotalEleveGarçon=()=>this.listeEleve.filter(eleve=>eleve.sexe==="M").length;
 
-
-    // Partie des Cours
-
-    // Ajouter un Cours
-    addCours(crs){
-        if(!(crs===Cours) || !(this.listeCours.some(cours=>cours.nomMatiere===crs.nomMatiere))){
-            this.listeCours.push(crs);
-        }
-    }
-
-    // Supprimer un cours
-    deleteCours(crs){
-        if(crs instanceof Cours){
-            let indexCours = this.listeCours.findIndex(cours=>cours._nomMatiere===crs._nomMatiere);
-            if (indexCours!==-1) {
-                this.listeCours.splice(indexCours,1);
-            }
-        }
-    }
-// Afficher les cours
-
-    displayCours(){
-        return this.listeCours.forEach(cours=>console.log(`${cours._nomMatiere} - ${cours._domaine} - ${cours._coefficient}`))
-    }
-
-  // Modifier cours
-  updateCours(crsA,crsN){
-    if (crsA && crsN instanceof Cours) {
-        let findIndexCours = this.listeCours.findIndex(cours=>cours._nomMatiere===crsA._nomMatiere);
-        if (findIndexCours!==-1) {
-            this.listeCours[findIndexCours] = crsN;
-        }
-    }
-  }  
-    // Trouvers un cours
-    findCours(crs){
-        if (crs instanceof Cours) {
-            let coursFind = this.listeCours.find(cours=>cours._nomMatiere===crs._nomMatiere);
-
-            if (coursFind) {
-                console.log(`${coursFind._nomMatiere}`);
-            }
-        }
-        
-    }
 
 }
 
