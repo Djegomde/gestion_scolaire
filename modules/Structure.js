@@ -1,4 +1,4 @@
-import { Eleve } from "./Personnes";
+import { Eleve } from "./Personnes.js";
 
 export class Etablissement {
     constructor(nom){
@@ -39,7 +39,7 @@ export class Etablissement {
     }
 // Afficher la liste des classes de l'établissement
     displayClasse(){
-        return this.listeClasse.forEach((classe)=>console.log(`${classe.nom}  ${classe.anneScolaire}`))
+        return this.listeClasse.forEach((classe)=>console.log(`${classe.nom} - ${classe.anneScolaire}`))
     }
 
     // Mise à jour une classe
@@ -54,6 +54,14 @@ export class Etablissement {
              }
         }
        
+    }
+
+    // Trouver une classe
+    findClasse(cl){
+        if (cl instanceof Classe) {
+            let findcl = this.listeClasse.find(classe=>classe._nom===cl._nom);
+            console.log(`${findcl._nom} - ${findcl._anneScolaire}`);
+        }
     }
 
 
@@ -122,7 +130,7 @@ export class Classe {
 
     nbTotalEleveFille = ()=>this.listeEleve.filter(eleve=>eleve.sexe==="F").length;
 
-    nbTotalEleveGarçon=()=>this.listeEleve.filter(eleve=>eleve.sexe==="M").length;
+    nbTotalEleveGarson = ()=>this.listeEleve.filter(eleve=>eleve.sexe==="M").length;
 
 
 }

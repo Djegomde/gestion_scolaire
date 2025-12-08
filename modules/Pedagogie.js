@@ -1,14 +1,10 @@
-import { Enseignant } from "./Personnes";
-import { Classe } from "./Structure";
-
 export class Cours {
-    constructor({nomMatiere,domaine,coefficient,description}) {
+    constructor(nomMatiere,domaine,coefficient,classe,enseignant) {
         this._nomMatiere = nomMatiere;
         this._domaine = domaine;
         this._coefficient = coefficient;
-        this._description = description;
-        this.classe = Classe;
-        this.enseignant = Enseignant;
+        this.classe = classe;
+        this.enseignant = enseignant;
 
     }
 
@@ -16,12 +12,16 @@ export class Cours {
     get nomMatiere(){return this._nomMatiere};
     get domaine(){ return this._domaine};
     get coefficient(){return this._coefficient};
-    get description(){return this._description};
 
     set nomMatiere(value){this._nomMatiere = value};
     set domaine(value){this._domaine=value};
     set coefficient(value){this._coefficient=(value>0)?value:0};
     set domaine(value){this._description=value};
 
+      get description() {
+        return `Cours : ${this.nomMatiere} (Coef: ${this.coefficient})
+                Enseignant : ${this.enseignant.nom}
+                Classe : ${this.classe.nom}`;
+    }
 
 }

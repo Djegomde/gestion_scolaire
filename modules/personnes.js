@@ -54,17 +54,6 @@ export class Eleve extends Personne {
     }
 
 
-    // Ajouter Evaluation
-        addEvaluation(value){
-            if (value instanceof Evaluation) {
-                let existEval = this.listEvaluation.some(evaluation=>evaluation._nomMatiere===value._nomMatiere);
-    
-                if (!existEval) {
-                    this.listEvaluation.push(value)
-                }
-                
-            }
-        }
     
 }
 

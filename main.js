@@ -1,3 +1,4 @@
+import { Cours } from "./modules/Pedagogie.js";
 import { Eleve,Enseignant } from "./modules/Personnes.js";
 import { Etablissement,Classe } from "./modules/Structure.js";
 
@@ -43,4 +44,8 @@ etab1.updateClasse(cl1,"Terminale","2026");
 console.log(etab1)
 
 //console.log(etab1.searchClass("2nd"));
+
+let enseignant = new Enseignant(enstes)
+let cours1 = new Cours("Mathématique","scientifique",4,cl1,enseignant);
+console.log(cours1.description);
 
