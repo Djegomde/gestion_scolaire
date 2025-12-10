@@ -6,7 +6,10 @@ export class Evaluation {
         this.cours = cours;
         this.eleve = eleve;
     }
-
+  
+    get valeur() { return this._valeur; }
+    get type() { return this._type; }
+    get date() { return this._dateEvaluation; }
       get observation() {
         const note = this._valeur;
         switch (true) {
@@ -39,13 +42,84 @@ export class Evaluation {
 }
 
 export class Bulletin {
+    // ensembleNotes : est un tableau des evaluations qu'on envoi au bulletin 
+
     constructor(trimestre,eleve,ensembleNotes) {
         this._trimestre = trimestre;
         this.eleve = eleve;
-        this.ensembleNotes = ensembleNotes.filter(item =>  item.eleve.prenom===this.eleve.prenom && item.eleve.nom===this.eleve.nom);
+        this.ensembleNotesEleve = ensembleNotes.filter(item =>  item.eleve.prenom===this.eleve.prenom && item.eleve.nom===this.eleve.nom);
     }
    
-    tabDiscipline(){
+
+    /**
+     * Méthode principale qui transforme la liste brute de notes
+     * en lignes de bulletin structurées par matière.
+     */
+    genererLignes() {
+        const matieres = {};
+
+        // 1. Regroupement des notes par matière
+        for (const note of this.ensembleNotesEleve) {
+            // On utilise le nom de la matière comme clé de regroupement
+            const nomMatiere = note.cours.nomMatiere;
+
+            // Si la matière n'est pas encore dans la liste, on l'initialise
+            if (!matieres[nomMatiere]) {
+                matieres[nomMatiere] = {
+                    matiere: nomMatiere,
+                    coef: note.cours.coefficient,
+                    sommeDevoirs: 0,
+                    nbDevoirs: 0,
+                    noteCompo: 0
+                };
+            }
+
+            // On ajoute la note au bon compteur selon son type
+            if (note.type === "Devoir") {
+                matieres[nomMatiere].sommeDevoirs += note.valeur;
+                matieres[nomMatiere].nbDevoirs++;
+            } else if (note.type === "Composition") {
+                matieres[nomMatiere].noteCompo = note.valeur;
+            }
+        }
+
+        // 2. Calcul des moyennes finales pour chaque matière
+        return Object.values(matieres).map(data => {
+            // Moyenne des devoirs (sécurité division par zéro)
+            const moyDevoir = data.nbDevoirs > 0 ? (data.sommeDevoirs / data.nbDevoirs) : 0;
+            
+            // Règle de calcul : (Moyenne Devoirs + Note Compo) / 2
+            const moyMatiere = (moyDevoir + data.noteCompo) / 2;
+            
+            // Points = Moyenne * Coefficient
+            const points = moyMatiere * data.coef;
+
+            return {
+                matiere: data.matiere,
+                coef: data.coef,
+                moyDevoir: moyDevoir.toFixed(2),
+                noteCompo: data.noteCompo,
+                moyenne: moyMatiere.toFixed(2),
+                points: points.toFixed(2)
+            };
+        });
+    }
+
+    get moyenneTrimestrielle() {
+        const lignes = this.genererLignes();
+        let totalPoints = 0;
+        let totalCoefs = 0;
+
+        for (const ligne of lignes) {
+            totalPoints += parseFloat(ligne.points);
+            totalCoefs += ligne.coef;
+        }
+
+        // Moyenne pondérée générale
+        return (totalCoefs > 0) ? (totalPoints / totalCoefs).toFixed(2) : "0.00";
+    }
+
+  /*  tabDiscipline(){
         let tabDiscipline = [];
          for (const key in this.ensembleNotes) {
          tabDiscipline .push(this.ensembleNotes[key].cours.nomMatiere);
@@ -135,7 +209,7 @@ export class Bulletin {
 
     moyenne(){
         return this.sommeMoyCoef()/this.sommeCoef();
-    }
+    }*/
 
 
 }

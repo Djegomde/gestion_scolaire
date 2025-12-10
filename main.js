@@ -303,7 +303,8 @@ let eleve1 = new Eleve(eleveAminata);
 
 let bulletin1 = new Bulletin(1,eleve1,evaluations);
 console.log(bulletin1);
-console.log(bulletin1. moyenne());
+console.log(bulletin1. genererLignes());
+console.log("Moyenne Generale :"+bulletin1.moyenneTrimestrielle)
 
 /*let enstes = {
     nom : "Djegomde",
